@@ -1,9 +1,3 @@
-{
-  email admin@lstolas.xyz
-  servers {
-    protocols h1 h2
-  }
-}
 
 lstolas.xyz, www.lstolas.xyz {
   encode zstd gzip
