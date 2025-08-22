@@ -42,7 +42,7 @@
 
 <div class="content">
   <header>
-    <img src="/logo.svg" alt="stOLAS" sizes="400px" />
+    <img src="/logo.svg" alt="stOLAS"  />
   </header>
 
   <main>
@@ -83,7 +83,7 @@
     padding: 2rem 0;
   }
   header img {
-    height: 132px;
+    height: 112px;
   }
   main {
     flex: 1;
