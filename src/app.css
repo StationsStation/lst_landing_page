@@ -1,0 +1,86 @@
+@import 'tailwindcss';
+@plugin '@tailwindcss/forms';
+@plugin '@tailwindcss/typography';
+
+
+:root {
+  color-scheme: dark;
+  --bg: #000;
+  --text: #d7e2ea;
+  --muted: #9aa6af;
+}
+
+
+* { box-sizing: border-box; }
+html, body, #svelte { height: 100%; }
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--text);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, "Helvetica Neue", Arial, "Apple Color Emoji", "Segoe UI Emoji";
+}
+
+
+.screen {
+  position: relative;
+  min-height: 100vh;
+  width: 100%;
+  overflow: hidden;
+  background: var(--bg);
+  display: flex;
+  flex-direction: column;
+}
+
+.header {
+  width: 100%;
+  padding: 24px 0;
+  display: flex;
+  justify-content: center;
+  z-index: 1;
+}
+
+.logo {
+  height: 32px;
+  opacity: 0.9;
+}
+
+.center {
+  flex: 1;
+  display: grid;
+  place-items: center;
+  text-align: center;
+  z-index: 1;
+}
+
+.headline {
+  font-size: clamp(48px, 8vw, 88px);
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  text-shadow: 0 0 20px rgba(173, 216, 230, 0.15);
+  user-select: none;
+}
+
+.footer {
+  width: 100%;
+  padding: 0 0 24px 0;
+  text-align: center;
+  font-size: 12px;
+  color: var(--muted);
+  z-index: 1;
+}
+
+.fade-in { animation: fade-in 800ms ease-out both; }
+.fade-in-1 { animation-delay: 120ms; }
+.fade-in-2 { animation-delay: 240ms; }
+
+@keyframes fade-in {
+  from { opacity: 0; transform: translateY(6px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+
+.header, .footer {
+  background: linear-gradient(to bottom, var(--bg), rgba(0,0,0,0));
+}
