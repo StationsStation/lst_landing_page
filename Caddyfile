@@ -1,27 +1,16 @@
 {
-  # Optional: set ACME email so cert notices reach you
   email admin@lstolas.xyz
-  # Improve TLS defaults slightly
-  servers {
-    protocols h1 h2
-  }
+  servers { protocols h1 h2 }
 }
 
-# Redirect www → apex
-www.lstolas.xyz {
-  redir https://lstolas.xyz{uri} permanent
-}
-
-lstolas.xyz {
+lstolas.xyz, www.lstolas.xyz {
   encode zstd gzip
 
-  # Basic request logging
   log {
     output stdout
     format console
   }
 
-  # Security headers
   header {
     Strict-Transport-Security "max-age=31536000; includeSubDomains; preload"
     X-Content-Type-Options "nosniff"
@@ -30,16 +19,12 @@ lstolas.xyz {
     Content-Security-Policy "default-src 'self'; img-src 'self' data: https:; style-src 'self' 'unsafe-inline' https:; script-src 'self' 'unsafe-inline' https:; connect-src 'self' https: wss:"
   }
 
-  # Static caching hints (adjust patterns as needed)
   @static {
     path *.css *.js *.png *.jpg *.jpeg *.gif *.svg *.webp *.ico *.woff *.woff2
   }
   header @static Cache-Control "public, max-age=31536000, immutable"
 
   reverse_proxy app:3000 {
-    # WebSockets/SSE work automatically
-    transport http {
-      keepalive 30s
-    }
+    transport http { keepalive 30s }
   }
 }
